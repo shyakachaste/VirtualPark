@@ -1,48 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <title>Virtual park</title>
+  <meta charset="UTF-8">
+  <title>Virtual Park</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="info-panel">Click on an object to see details</div>
-    <a-scene>
-        <a-assets>
-          <img id="tree-texture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
-          <img id="grass-texture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
-        </a-assets>
-    
-        <!-- Ground -->
-        <a-plane src="#grass-texture" rotation="-90 0 0" width="30" height="30" color="#7CFC00"></a-plane>
-    
-        <!-- Trees -->
-        <a-entity position="-4 0 -5">
-          <a-cylinder height="2" radius="0.2" color="#8B5A2B"></a-cylinder>
-          <a-sphere radius="1.5" position="0 2 0" color="#228B22"></a-sphere>
-        </a-entity>
-        <a-entity position="2 0 -3">
-          <a-cylinder height="2" radius="0.2" color="#8B5A2B"></a-cylinder>
-          <a-sphere radius="1.5" position="0 2 0" color="#228B22"></a-sphere>
-        </a-entity>
-        <a-entity position="5 0 -7">
-          <a-cylinder height="2" radius="0.2" color="#8B5A2B"></a-cylinder>
-          <a-sphere radius="1.5" position="0 2 0" color="#228B22"></a-sphere>
-        </a-entity>
-    
-        <!-- Benches -->
-        <a-box position="-3 0.5 -2" width="1.5" height="0.2" depth="0.5" color="#8B4513"></a-box>
-        <a-box position="-3 0.8 -2" width="1.5" height="0.1" depth="0.1" color="#8B4513"></a-box>
-        <a-box position="3 0.5 -4" width="1.5" height="0.2" depth="0.5" color="#8B4513"></a-box>
-        <a-box position="3 0.8 -4" width="1.5" height="0.1" depth="0.1" color="#8B4513"></a-box>
-    
-        <!-- Fountain -->
-        <a-torus-knot position="0 0.5 -6" radius="1" tube="0.1" p="2" q="3" color="#1E90FF"></a-torus-knot>
-    
-        <!-- Camera and controls -->
-        <a-entity camera look-controls wasd-controls position="0 1.6 5"></a-entity>
-      </a-scene>
+  <canvas id="canvas"></canvas>
+  <br>
+  <a-scene>
+    <a-assets>
+      <img id="tree-texture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
+      <img id="grass-texture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
+    </a-assets>
+
+    <!-- Ground -->
+    <a-plane src="#grass-texture" rotation="-90 0 0" width="30" height="30" color="#7CFC00"></a-plane>
+
+    <!-- Trees -->
+    <a-entity position="-4 0 -5">
+      <a-cylinder height="2" radius="0.2" color="#8B5A2B"></a-cylinder>
+      <a-sphere radius="1.5" position="0 2 0" color="#228B22"></a-sphere>
+    </a-entity>
+    <a-entity position="2 0 -3">
+      <a-cylinder height="2" radius="0.2" color="#8B5A2B"></a-cylinder>
+      <a-sphere radius="1.5" position="0 2 0" color="#228B22"></a-sphere>
+    </a-entity>
+    <a-entity position="5 0 -7">
+      <a-cylinder height="2" radius="0.2" color="#8B5A2B"></a-cylinder>
+      <a-sphere radius="1.5" position="0 2 0" color="#228B22"></a-sphere>
+    </a-entity>
+
+    <!-- Benches -->
+    <a-box position="-3 0.5 -2" width="1.5" height="0.2" depth="0.5" color="#8B4513"></a-box>
+    <a-box position="-3 0.8 -2" width="1.5" height="0.1" depth="0.1" color="#8B4513"></a-box>
+    <a-box position="3 0.5 -4" width="1.5" height="0.2" depth="0.5" color="#8B4513"></a-box>
+    <a-box position="3 0.8 -4" width="1.5" height="0.1" depth="0.1" color="#8B4513"></a-box>
+
+    <!-- Fountain -->
+    <a-torus-knot position="0 0.5 -6" radius="1" tube="0.1" p="2" q="3" color="#1E90FF"></a-torus-knot>
+
+    <!-- Camera and controls -->
+    <a-entity camera look-controls wasd-controls position="0 1.6 5"></a-entity>
+  </a-scene>
+
+  <script src="view.js"></script>
+  <script src="firework.js"></script>
 </body>
 </html>
