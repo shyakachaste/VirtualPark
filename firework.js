@@ -63,3 +63,83 @@ class Particle{
 		ctx.fillRect(this.x, this.y, 2, 2);
 	}
 }
+
+
+class Firework{
+	constructor(x){
+		this.x = x;
+		this.y = height;
+		this.isBlown = false;
+		this.col = randomCol();
+	}
+
+	update(){
+		this.y -= 3;
+		if(this.y < 350-Math.sqrt(Math.random()*500)*40){
+			this.isBlown = true;
+			for(let i=0; i<60; i++){
+				particles.push(new Particle(this.x, this.y, this.col))
+			}
+		}
+		return this.isBlown;
+	}
+
+	draw(){
+		ctx.globalAlpha = 1;
+		ctx.fillStyle = this.col;
+		ctx.fillRect(this.x, this.y, 2, 2);
+	}
+}
+
+function randomCol(){
+	var letter = '0123456789ABCDEF';
+	var nums = [];
+
+	for(var i=0; i<3; i++){
+		nums[i] = Math.floor(Math.random()*256);
+	}
+
+	let brightest = 0;
+	for(var i=0; i<3; i++){
+		if(brightest<nums[i]) brightest = nums[i];
+	}
+
+	brightest /=255;
+	for(var i=0; i<3; i++){
+		nums[i] /= brightest;
+	}
+
+	let color = "#";
+	for(var i=0; i<3; i++){
+		color += letter[Math.floor(nums[i]/16)];
+		color += letter[Math.floor(nums[i]%16)];
+	}
+	return color;
+}
+
+function randomVec(max){
+	let dir = Math.random()*Math.PI*2;
+	let spd = Math.random()*max;
+	return{x: Math.cos(dir)*spd, y: Math.sin(dir)*spd};
+}
+
+function setSize(canv){
+	canv.style.width = (innerWidth) + "px";
+	canv.style.height = (innerHeight) + "px";
+	width = innerWidth;
+	height = innerHeight;
+
+	canv.width = innerWidth*window.devicePixelRatio;
+	canv.height = innerHeight*window.devicePixelRatio;
+	canvas.getContext("2d").scale(window.devicePixelRatio, window.devicePixelRatio);
+}
+
+function onClick(e){
+	fireworks.push(new Firework(e.clientX));
+}
+
+function windowResized(){
+	setSize(canvas);
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(0, 0, width, height);
+}
